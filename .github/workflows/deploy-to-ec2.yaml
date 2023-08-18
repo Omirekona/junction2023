@@ -45,8 +45,8 @@ jobs:
           npm run build --prefix /home/ubuntu/junction2023/frontend && \
           npm run build --prefix /home/ubuntu/junction2023/backend  && \
 
-          /home/ubuntu/.nvm/versions/node/v18.17.0/bin/pm2 stop server
-          /home/ubuntu/.nvm/versions/node/v18.17.0/bin/pm2 start \
+          /usr/bin/pm2 stop server
+          /usr/bin/pm2 start \
           /home/ubuntu/junction2023/backend/dist/index.js
           "
 
