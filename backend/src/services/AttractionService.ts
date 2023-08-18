@@ -7,13 +7,17 @@ function getAll() {
     {
       params: {
         resultType: "json",
-        serviceKey: AttractionServiceAPI.BUSAN_ATTRACTION_SERVICE_ENCODING_KEY,
-        numOfRows: 1,
+        serviceKey: AttractionServiceAPI.BUSAN_ATTRACTION_SERVICE_DECODING_KEY,
+        // max data available on the api
+        numOfRows: 133,
         pageNo: 1,
       },
     }
   );
-  return query.then((response) => response.data);
+  return query.then((response) => {
+    console.log(response.data);
+    return response.data;
+  });
 }
 
 export default {
