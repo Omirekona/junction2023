@@ -5,7 +5,6 @@ export interface HttpError extends Record<string, any> {
   statusCode: number;
 }
 const axiosInstance = axios.create({
-  baseURL: process.env.NEXT_PUBLIC_API_URL,
   withCredentials: true,
 });
 
