@@ -1,0 +1,55 @@
+name: Deploy both frontend and backend to ec2
+
+on:
+  push:
+    branches:
+      - main
+    paths:
+      - backend/**
+      - frontend/**
+  workflow_dispatch:
+  
+
+
+jobs:
+  deploy:
+    name: deploy to ec2
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v3
+    
+      - name: Setup SSH key
+        run: |
+          mkdir -p ~/.ssh
+          echo "${{ secrets.EC2_SSH_KEY }}" > ~/.ssh/ec2_key.pem
+          chmod 400 ~/.ssh/ec2_key.pem
+          ssh-keyscan -H ${{ vars.EC2_IP }} >> ~/.ssh/known_hosts
+
+      - name: copy the directories
+        run: |
+          mkdir junction2023
+          mv ./backend junction2023
+          mv ./frontend junction2023
+          scp -i ~/.ssh/ec2_key.pem \
+            -r \
+            $GITHUB_WORKSPACE/junction2023 \
+            ubuntu@${{ vars.EC2_IP }}:/home/ubuntu/
+
+      - name: compile the frontend and backend
+        run: |
+          ssh -i ~/.ssh/ec2_key.pem ubuntu@${{ vars.EC2_IP }} "
+          npm install   --prefix /home/ubuntu/junction2023/frontend && \
+          npm install   --prefix /home/ubuntu/junction2023/backend && \
+
+          npm run build --prefix /home/ubuntu/junction2023/frontend && \
+          npm run build --prefix /home/ubuntu/junction2023/backend  && \
+
+          /home/ubuntu/.nvm/versions/node/v18.17.0/bin/pm2 stop server
+          /home/ubuntu/.nvm/versions/node/v18.17.0/bin/pm2 start \
+          /home/ubuntu/junction2023/backend/dist/index.js
+          "
+
+
+
+
