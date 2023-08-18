@@ -3,7 +3,8 @@
   "version": "0.0.0",
   "scripts": {
     "start": "node -r module-alias/register ./dist --env=production",
-    "dev": "nodemon"
+    "dev": "nodemon",
+    "build": "tsc" 
   },
   "nodemonConfig": {
     "watch": [

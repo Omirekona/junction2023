@@ -1,5 +1,5 @@
-import HttpStatusCodes from "@src/constants/HttpStatusCodes";
-import AttractionService from "@src/services/AttractionService";
+import HttpStatusCodes from "../constants/HttpStatusCodes";
+import AttractionService from "../services/AttractionService";
 import { Request, Response } from "express";
 
 async function getAll(_: Request, res: Response) {
