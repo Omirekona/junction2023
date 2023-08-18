@@ -47,7 +47,7 @@ jobs:
 
           /usr/bin/pm2 stop server
           /usr/bin/pm2 start \
-          /home/ubuntu/junction2023/backend/dist/index.js
+          /home/ubuntu/junction2023/backend/dist/index.js --name server
           "
 
 
