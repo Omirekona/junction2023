@@ -1,16 +1,6 @@
-import "./pre-start"; // Must be the first import
-import logger from "jet-logger";
-
-import EnvVars from "@src/constants/EnvVars";
 import server from "./server";
 
 // **** Run **** //
-
-const SERVER_START_MSG =
-  "Express server started on port: " + EnvVars.Port.toString();
-
-const service = server.listen(EnvVars.Port, () =>
-  logger.info(SERVER_START_MSG)
-);
+const service = server.listen(3000);
 
 service.setTimeout(20000);
