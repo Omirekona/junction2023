@@ -31,9 +31,6 @@ app.use("/api/hello", (_, res) => {
     res.send("hello how are you doing")
 })
 
-console.log(
-    "the current dir is: ", __dirname
-)
 
 // **** Export default **** //
 
