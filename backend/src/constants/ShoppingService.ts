@@ -1,0 +1,18 @@
+const BUSAN_SHOPPING_SERVICE_ENCODING_KEY =
+  "OcicxwQmjw1fh9B5gPALdX%2BW3JAa3iqWkJm2UuQ%2BccCshV%2FTJEicTsrXJNTWOkRIYgStjJf%2BBuHMsIqJNXYouw%3D%3D";
+
+const BUSAN_SHOPPING_SERVICE_DECODING_KEY =
+  "OcicxwQmjw1fh9B5gPALdX+W3JAa3iqWkJm2UuQ+ccCshV/TJEicTsrXJNTWOkRIYgStjJf+BuHMsIqJNXYouw==";
+
+const BUSAN_SHOPPING_SERVICE_API =
+  "http://apis.data.go.kr/6260000/ShoppingService/getShoppingKr";
+
+const BUSAN_SHOPPING_SERVICE_API_EN =
+  "http://apis.data.go.kr/6260000/ShoppingService/getShoppingEn";
+
+export default {
+  BUSAN_SHOPPING_SERVICE_API,
+  BUSAN_SHOPPING_SERVICE_API_EN,
+  BUSAN_SHOPPING_SERVICE_ENCODING_KEY,
+  BUSAN_SHOPPING_SERVICE_DECODING_KEY,
+} as const;
