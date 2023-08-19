@@ -57,5 +57,26 @@ nav {
 .drawerOpen {
   transform: translateX(0);
 }
-  
+
+.custom-checkbox {
+  display: inline-block;
+  width: 20px;
+  height: 20px;
+  background-color: white;
+  border: 2px solid blue;
+  border-radius: 10px; /* to make it rounded */
+  cursor: pointer;
+  position: relative;
+  margin-right: 5px;
+}
+
+.custom-checkbox.checked {
+  background-color: blue;
+}
+
+/* Hide the default checkbox */
+.hidden-checkbox {
+  display: none;
+}
+
   
