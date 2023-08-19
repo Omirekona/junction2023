@@ -10,7 +10,11 @@ const Paths = {
   },
   Route: {
     Base: "/route",
-    Get: "/get",
+    Get: "",
+  },
+  User: {
+    Base: "/user",
+    Points: "/points",
   },
 } as const;
 
