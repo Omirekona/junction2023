@@ -30,6 +30,7 @@ const path = [
 function MapsPage() {
   const [showSeoulInfo, setShowSeoulInfo] = useState(false);
   const [showBusanInfo, setShowBusanInfo] = useState(false);
+  const [mapsLoaded, setMapsLoaded] = useState(false);
 
   useEffect(() => {
     axios.get("/api/users").then(response => {
@@ -41,7 +42,9 @@ function MapsPage() {
     <LoadScript
       googleMapsApiKey="AIzaSyBFSNEVdf3LsfHZq-erCG1bZWUpBNj-xFQ"
       mapIds={["2b6d581e2141c1ff"]}
+      onLoad={() => setMapsLoaded(true)}
     >
+       {mapsLoaded && (
       <GoogleMap
         style={{ width: "80%", height: "500px", borderRadius: "0 0 10px 10px" }}
         mapContainerStyle={containerStyle}
@@ -52,16 +55,16 @@ function MapsPage() {
         }}
         mapId="2b6d581e2141c1ff"
       >
-        {/* {path.map((point, index) => (
+        {path && path.map((point, index) => (
               <Marker 
                 key={index}
                 position={point}
                 icon={{
-                  url: "https://maps.gs tatic.com/mapfiles/markers2/marker.png",
+                  url: "https://maps.gstatic.com/mapfiles/markers2/marker.png",
                   scaledSize: new window.google.maps.Size(40, 40)  // Adjust size as needed
                 }}
               />
-            ))} */}
+            ))}
         <Circle
           center={path[0]}
           radius={50}
@@ -118,6 +121,7 @@ function MapsPage() {
           </InfoWindow>
         )}
       </GoogleMap>
+        )}
     </LoadScript>
   );
 }

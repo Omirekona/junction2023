@@ -32,7 +32,7 @@ function Login() {
                             style={{ marginBottom: '10px',borderRadius: '4px', border: '1px solid gray', padding: '2px' }}
                             type="email"
                             value={email}
-                            classname="border-2 border-gray-300 p-2 w-full"
+                            className="border-2 border-gray-300 p-2 w-full"
                             onChange={e => setEmail(e.target.value)}
                             required
                         />

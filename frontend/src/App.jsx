@@ -16,10 +16,6 @@ import Copyright from './navigation/Copyright';
 import axios from "axios";
 import {FIREBASE_AUTH} from "./config/firebase";
 
-
-const queryClient = new QueryClient();
-
-
 axios.interceptors.request.use((config) => {
   const jwtToken = FIREBASE_AUTH.currentUser.getIdToken();
   if (jwtToken) {
@@ -76,7 +72,11 @@ function App() {
                 <ForgotPasswordPage />
               </Layout>
             } />
-            <Route path="/preference1" element={<Preference1 />} />
+            <Route path="/preference1" element={
+              <Layout>
+                <Preference1 />
+              </Layout>
+            } />
             <Route path="/preference2" element={<Preference2 />} />
             <Route path="/preference3" element={<Preference3 />} />
           </Routes>
