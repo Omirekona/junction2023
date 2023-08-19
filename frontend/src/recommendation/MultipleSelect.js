@@ -20,7 +20,7 @@ function MultipleSelect() {
   return (
     <div>
       <div className="mb-10 mt-5">
-      What kind of trip do you prefer?
+    What kind of <span className="text-blue-700">trip</span> do you prefer?
       </div>
       
       <div className="mb-3 rounded-xl">
@@ -162,11 +162,18 @@ function MultipleSelect() {
         />
       </div>
 
-      <Button variant="contained" style={{borderRadius: '10px', marginBottom: '10px', marginTop: '5px'}}>
-        <Link to="/preference2" style={{textDecoration: 'none', color: 'black'}}>Next</Link>
-      </Button>
-
-      
+      <Button 
+  variant="contained" 
+  style={{borderRadius: '10px', marginBottom: '10px', marginTop: '5px', textTransform: 'none'}}
+>
+  <Link 
+    to="/preference2" 
+    className="white"
+    style={{textDecoration: 'none'}}
+  >
+    Next
+  </Link>
+</Button>  
     </div>
   );
 }
