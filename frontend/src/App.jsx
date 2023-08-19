@@ -13,20 +13,9 @@ import Preference2 from './recommendation/TwoSelect';
 import Preference3 from './recommendation/TripRoutes';
 import Copyright from './navigation/Copyright';
 
-<<<<<<< Updated upstream
 import axios from "axios";
 import {FIREBASE_AUTH} from "./config/firebase";
 
-axios.interceptors.request.use((config) => {
-  const jwtToken = FIREBASE_AUTH.currentUser.getIdToken();
-  if (jwtToken) {
-    config.headers["Authorization"] = "Bearer" + jwtToken;
-  }
-  return config;
-})
-
-=======
->>>>>>> Stashed changes
 function App() {
   function Layout({ children }) {
     return (
@@ -75,11 +64,7 @@ function App() {
             } />
             <Route path="/preference1" element={
               <Layout>
-<<<<<<< Updated upstream
-                <Preference1 />
-=======
                 <Preference1/>
->>>>>>> Stashed changes
               </Layout>
             } />
             <Route path="/preference2" element={<Preference2 />} />
