@@ -35,7 +35,37 @@ function MapsPage() {
   const [showSeoulInfo, setShowSeoulInfo] = useState(false);
   const [showBusanInfo, setShowBusanInfo] = useState(false);
   const [mapsLoaded, setMapsLoaded] = useState(false);
+  const navigate = useNavigate();
 
+  const [loading, setLoading] = useState(true);
+
+  useEffect(() => {
+    if (!FIREBASE_AUTH.currentUser) {
+      navigate("/login");
+      return;
+    }
+    FIREBASE_AUTH.currentUser.getIdToken().then(decodedToken => {
+      const bearerToken = "Bearer " + decodedToken
+      fetch("/route/new", {
+        headers: {
+          Authorization: bearerToken
+        }
+      }).then(response => {
+        console.log("the response from: ", response.data)
+        setLoading(false);
+      }).catch(error => {
+        console.log("the error from the server: ", error)
+      })
+    }).catch(error => {
+      console.log("the error: ", error)
+    })
+  }, []);
+
+  if (loading) {
+    return (
+      <div>loading</div>
+    )
+  }
 
   return (
     <LoadScript

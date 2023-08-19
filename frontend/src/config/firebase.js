@@ -1,5 +1,5 @@
 import {initializeApp } from "firebase/app";
-import { getAuth, onAuthStateChanged, browserLocalPersistence, setPersistence} from "firebase/auth";
+import { getAuth, onAuthStateChanged, signOut} from "firebase/auth";
 import { getFirestore } from "firebase/firestore";
 
 import axios from "axios";
@@ -13,9 +13,16 @@ const firebaseConfig = {
     appId: "1:113840531041:web:8c81b77043cc5a0d7e2c20"
 };
 
+
+
 export const FIREBASE_APP = initializeApp(firebaseConfig);
 
 export const FIREBASE_AUTH = getAuth(FIREBASE_APP);
+
+signOut(FIREBASE_AUTH).then(() => {
+    console.log("signed out")
+})
+
 
 const requestInterceptor = axios.interceptors.request.use(async (config) => {
 });
