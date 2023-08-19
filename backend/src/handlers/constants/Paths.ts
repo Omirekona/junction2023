@@ -16,6 +16,10 @@ const Paths = {
     Base: "/user",
     Points: "/points",
   },
+  Image: {
+    Base: "/image",
+    Compare: "/compare",
+  },
 } as const;
 
 // **** Export **** //

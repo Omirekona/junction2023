@@ -25,7 +25,9 @@ async function get(uc_seq: string, preference: string) {
   const allAttractions = (await RouteService.getLocationsFromPreference(
     preference
   )) as any[];
-  return allAttractions.find((attraction) => attraction.UC_SEQ === uc_seq);
+  return allAttractions.find(
+    (attraction) => attraction.UC_SEQ === Number.parseInt(uc_seq)
+  );
 }
 
 export default {

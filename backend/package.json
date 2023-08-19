@@ -4,7 +4,7 @@
   "scripts": {
     "start": "node -r module-alias/register ./dist --env=production",
     "dev": "nodemon",
-    "build": "tsc" 
+    "build": "tsc"
   },
   "nodemonConfig": {
     "watch": [
@@ -24,6 +24,7 @@
   },
   "dependencies": {
     "axios": "^1.4.0",
+    "deepai": "^1.0.23",
     "express": "^4.18.2",
     "express-async-errors": "^3.1.1",
     "inserturlparams": "^1.0.1",
