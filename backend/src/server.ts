@@ -28,7 +28,7 @@ app.use(express.static(path.resolve(__dirname, "..", "static")))
 app.use(Paths.Base, BaseRouter);
 
 app.use("/api/hello", (_, res) => {
-    res.send("hello how are you doing")
+    res.send("hello how are you doing hyha")
 })
 
 
