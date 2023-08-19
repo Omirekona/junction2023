@@ -111,9 +111,13 @@ async function getAllByUserId(userId: string) {
 }
 
 async function create(name: string, route: unknown, user_id: string) {
-  await routeDB.create(name, user_id, JSON.stringify(route));
+  await routeDB.create(user_id, JSON.stringify(route));
   const maxID = await routeDB.getMaxID();
-  return routeDB.getById((maxID as any)["MAX(id)"] as number);
+  return routeDB.getById((maxID as any) as number);
+}
+
+async function incrementProgress(uid: string, rid: number) {
+  return routeDB.incrementProgress(uid, rid);
 }
 
 export default {
@@ -122,4 +126,5 @@ export default {
   getById,
   getAllByUserId,
   getLocationsFromPreference,
+  incrementProgress,
 } as const;

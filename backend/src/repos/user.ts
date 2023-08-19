@@ -29,38 +29,35 @@ function get(id: string) {
 
 function addPoints(id: string, points: number) {
   return new Promise((resolve, reject) => {
-    db.run("UPDATE user SET points = points + ? WHERE id = ?", [points, id], (err) => {
-      if (err) {
-        return reject(err);
-      } else {
-        return resolve(null);
+    db.run(
+      "UPDATE user SET points = points + ? WHERE id = ?",
+      [points, id],
+      (err) => {
+        if (err) {
+          return reject(err);
+        } else {
+          return resolve(null);
+        }
       }
+    );
+  });
+}
+
+function checkIfUserExists(uid: string) {
+  return new Promise((resolve, reject) => {
+    db.get("SELECT * FROM user WHERE uid = ?", [uid], (err, row) => {
+      if (err || !row) {
+        reject(err);
+      }
+      resolve(null);
     });
   });
 }
 
-
-function checkIfUserExists(uid: string) {
-  return new Promise((resolve, reject) => {
-    db.get(
-      "SELECT * FROM user WHERE id = ?", 
-      [uid], 
-      (err, row) => {
-        if (err || !row) {
-          reject(err);
-        }
-        resolve(null);
-      })
-  })
-}
-
-function insertUser(
-  uid: string, 
-  points: number = 0
-) {
+function insertUser(uid: string, points: number = 0) {
   return new Promise((resolve, reject) => {
     db.run(
-      "INSERT INTO user (id, points) VALUES (?, ?);",
+      "INSERT INTO user (uid, points) VALUES (?, ?)",
       [uid, points],
       (err) => {
         if (err) {
@@ -68,8 +65,8 @@ function insertUser(
         }
         resolve(null);
       }
-    )
-  })
+    );
+  });
 }
 
 export default {
@@ -77,5 +74,5 @@ export default {
   get,
   addPoints,
   checkIfUserExists,
-  insertUser
+  insertUser,
 } as const;

@@ -1,10 +1,20 @@
 import db from "./db";
 
-function create(name: string, user_id: string, info: string) {
+function create(uid: string, info: string) {
   return new Promise((resolve, reject) => {
+    db.serialize(() => {
+      db.run("INSERT INTO route (info) VALUES (?)", [info], (err) => {
+        if (err) {
+          return reject(err);
+        } else {
+          return resolve(null);
+        }
+      });
+    });
+    const recentID = getMaxID();
     db.run(
-      "INSERT INTO route (name,user_id,info,progress) VALUES (?, ?, ?, 0)",
-      [name, user_id, info],
+      "INSERT INTO routeanduser (uid, rid, progress) VALUES (?, ?, 0)",
+      [uid, recentID],
       (err) => {
         if (err) {
           return reject(err);
@@ -28,23 +38,27 @@ function getById(id: number) {
   );
 }
 
-function getByUserId(user_id: string) {
+function getByUserId(id: string) {
   return new Promise((resolve, reject) =>
-    db.all("SELECT * FROM route WHERE user_id = ?", [user_id], (err, rows) => {
-      if (err) {
-        return reject(err);
-      } else {
-        return resolve(rows);
+    db.get(
+      "SELECT id, info FROM route INNER JOIN routeanduser ru ON route.id = ru.rid WHERE id = ?",
+      [id],
+      (err, row) => {
+        if (err) {
+          return reject(err);
+        } else {
+          return resolve(row);
+        }
       }
-    })
+    )
   );
 }
 
-function incrementProgress(id: number) {
+function incrementProgress(uid: string, rid: number) {
   return new Promise((resolve, reject) => {
     db.run(
-      "UPDATE route SET progress = progress + 1 WHERE id = ?",
-      [id],
+      "UPDATE routeanduser SET progress = progress + 1 WHERE uid = ? AND rid = ?",
+      [uid, rid],
       (err) => {
         if (err) {
           return reject(err);
@@ -62,7 +76,7 @@ function getMaxID() {
       if (err) {
         return reject(err);
       } else {
-        return resolve(row);
+        return resolve((row as any)["MAX(id)"]);
       }
     });
   });

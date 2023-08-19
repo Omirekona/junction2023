@@ -6,6 +6,33 @@ const path = require("path");
 
 const db = new Database(":memory:");
 
+export interface User {
+  id: string;
+  points: number;
+}
+
+export interface Route {
+  id: number;
+  info: string; // serialized Attraction[]
+}
+
+export interface RouteAndUser {
+  uid: string;
+  rid: number;
+  progress: number;
+}
+
+export interface Mission {
+  id: number;
+  name: string;
+  route_id: number;
+  user_id: number;
+  info: string;
+  progress: number;
+  level: number;
+  is_complete: number;
+}
+
 db.serialize(() => {
   db.run("PRAGMA foreign_keys = ON", (err) => {
     if (err) {
@@ -25,8 +52,8 @@ db.serialize(() => {
     )
     .run(
       `CREATE TABLE route (
-        id TEXT PRIMARY KEY,
-        route TEXT
+        id INTEGER PRIMARY KEY,
+        info TEXT
     );`,
       (err) => {
         if (err) console.log("the error: ", err);
@@ -45,7 +72,7 @@ db.serialize(() => {
     );
   // `route_id` and `progress` are used as foreign keys to indicate in which part of a route the mission belongs to
   db.run(
-    "CREATE TABLE mission (id INTEGER PRIMARY KEY, name TEXT, route_id NUMBER, info TEXT, progress INTEGER level INTEGER is_complete INTEGER)"
+    "CREATE TABLE mission (id INTEGER PRIMARY KEY, name TEXT, route_id NUMBER, user_id TEXT, info TEXT, progress INTEGER level INTEGER is_complete INTEGER)"
   );
   console.log("the third statement is over");
 });

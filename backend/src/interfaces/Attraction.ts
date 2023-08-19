@@ -18,4 +18,5 @@ export interface Attraction {
   MAIN_IMG_NORMAL: string; // image links
   MAIN_IMG_THUMB: string; // image links
   ITEMCNTNTS: string; // description
+  points: number; // points to be awarded to user
 }
