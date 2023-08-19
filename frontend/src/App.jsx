@@ -16,20 +16,6 @@ function App() {
   return (
     <Router>
       <div className="App">
-        <header>
-        <button onClick={toggleDrawer}>Menu</button>
-          <nav>
-            <Drawer open={isOpen} onClose={toggleDrawer} direction='left' className='drawer z-10' > 
-              <ul>
-                <li><Link to="/" onClick={toggleDrawer}>Home</Link></li>
-                <li><Link to="/login" onClick={toggleDrawer}>Log in</Link></li>
-                <li><Link to="/maps" onClick={toggleDrawer}>Maps</Link></li>
-                <li><Link to="/mission" onClick={toggleDrawer}>Mission</Link></li>
-              </ul>
-            </Drawer>
-          </nav>
-        </header>
-        
         <main>
           {/* Route Handling */}
           <Routes>
@@ -39,6 +25,12 @@ function App() {
             <Route path="/mission" element={<MissionPage/>} />
           </Routes>
         </main>
+
+        <header> 
+            <div className="header">
+                <button onClick={toggleDrawer}>Open</button>
+            </div>
+        </header>
       </div>
     </Router>
   );
