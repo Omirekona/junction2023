@@ -38,7 +38,6 @@ jobs:
 
       - name: compile the frontend and backend
         run: |
-          source ~/.bashrc
           ssh -i ~/.ssh/ec2_key.pem ubuntu@${{ vars.EC2_IP }} "
           npm install   --prefix /home/ubuntu/junction2023/frontend && \
           npm install   --prefix /home/ubuntu/junction2023/backend && \
