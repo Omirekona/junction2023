@@ -14,7 +14,8 @@ function Login() {
         event.preventDefault();
 
         try {
-            await signInWithEmailAndPassword(FIREBASE_AUTH, email, password);
+            const result = await signInWithEmailAndPassword(FIREBASE_AUTH, email, password);
+            console.log("the result of the authentication is: ", result);
             navigate("/preference1");
         } catch (error) {
             setError(error.message);

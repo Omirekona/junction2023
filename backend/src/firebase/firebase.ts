@@ -13,14 +13,16 @@ admin.initializeApp({
 });
 
 export const verifyTokenMiddleware = async (req: RequestWithUID, res: Response, next: NextFunction) => {
-  const jwtToken = req.headers.authorization?.split("Bearer ")[1];
+  const jwtToken = req.headers.authorization?.split(" ")[1]?.trim();
   console.log("req.headers: ", req.headers);
+  console.log("jwt token:\n", jwtToken);
   if (!jwtToken) {
-    return res.status(403).send("Unauthorized");
+    return res.status(401).send("Unauthorized");
   }
 
   try {
     const decodedToken = await admin.auth().verifyIdToken(jwtToken);
+    console.log("decodedToken: ", decodedToken);
     const doesUserExist = await user.checkIfUserExists(decodedToken.uid);
     if (!doesUserExist) {
       user.insertUser(decodedToken.uid);
@@ -29,7 +31,7 @@ export const verifyTokenMiddleware = async (req: RequestWithUID, res: Response, 
     next();
   } catch (error) {
     console.log("there was an error: ", error);
-    res.status(403).send("Unauthorized");
+    res.status(401).send("Unauthorized");
   }
 }
 

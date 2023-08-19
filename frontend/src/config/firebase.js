@@ -1,7 +1,8 @@
 import {initializeApp } from "firebase/app";
-import { getAuth } from "firebase/auth";
+import { getAuth, onAuthStateChanged, browserLocalPersistence, setPersistence} from "firebase/auth";
 import { getFirestore } from "firebase/firestore";
 
+import axios from "axios";
 
 const firebaseConfig = {
     apiKey: "AIzaSyDboieohkGj8_Mfr8TKz7jufQeDBLfqKgQ",
@@ -13,5 +14,18 @@ const firebaseConfig = {
 };
 
 export const FIREBASE_APP = initializeApp(firebaseConfig);
+
 export const FIREBASE_AUTH = getAuth(FIREBASE_APP);
+
+const requestInterceptor = axios.interceptors.request.use(async (config) => {
+});
 export const FIREBASE_DB = getFirestore(FIREBASE_APP);
+
+onAuthStateChanged(FIREBASE_AUTH, (user) => {
+    if (user) {
+        console.log("FIREBASE: the user is present: ", user)
+    } else {
+        console.log("FIREBASE: the user is not present")
+    }
+})
+

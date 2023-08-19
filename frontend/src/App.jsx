@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { BrowserRouter as Router, Route, Routes} from 'react-router-dom';
 import HomePage from './components/HomePage';
 import MapsPage from './components/MapsPage';
@@ -13,6 +13,7 @@ import Preference2 from './recommendation/TwoSelect';
 import Preference3 from './recommendation/TripRoutes';
 import Copyright from './navigation/Copyright';
 
+<<<<<<< Updated upstream
 import axios from "axios";
 import {FIREBASE_AUTH} from "./config/firebase";
 
@@ -24,8 +25,9 @@ axios.interceptors.request.use((config) => {
   return config;
 })
 
+=======
+>>>>>>> Stashed changes
 function App() {
-
   function Layout({ children }) {
     return (
       <>
@@ -34,7 +36,6 @@ function App() {
       </>
     );
   }
-  
 
   return (
     <Router>
@@ -74,7 +75,11 @@ function App() {
             } />
             <Route path="/preference1" element={
               <Layout>
+<<<<<<< Updated upstream
                 <Preference1 />
+=======
+                <Preference1/>
+>>>>>>> Stashed changes
               </Layout>
             } />
             <Route path="/preference2" element={<Preference2 />} />

@@ -45,16 +45,22 @@ function addPoints(id: string, points: number) {
 
 function checkIfUserExists(uid: string) {
   return new Promise((resolve, reject) => {
-    db.get("SELECT * FROM user WHERE uid = ?", [uid], (err, row) => {
-      if (err || !row) {
-        reject(err);
-      }
-      resolve(null);
-    });
-  });
+    db.get(
+      "SELECT * FROM user WHERE id = ?", 
+      [uid], 
+      (err, row) => {
+        if (err || !row) {
+          resolve(false);
+        }
+        resolve(true);
+      })
+  })
 }
 
-function insertUser(uid: string, points: number = 0) {
+function insertUser(
+  uid: string, 
+  points: number = 0
+) {
   return new Promise((resolve, reject) => {
     db.run(
       "INSERT INTO user (uid, points) VALUES (?, ?)",

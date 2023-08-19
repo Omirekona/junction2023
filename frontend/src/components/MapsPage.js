@@ -9,6 +9,10 @@ import {
 } from "@react-google-maps/api";
 import axios from 'axios';
 
+import { useNavigate } from "react-router-dom";
+
+import { FIREBASE_AUTH } from "../config/firebase";
+
 const containerStyle = {
   width: "100%",
   height: "600px",
@@ -32,11 +36,6 @@ function MapsPage() {
   const [showBusanInfo, setShowBusanInfo] = useState(false);
   const [mapsLoaded, setMapsLoaded] = useState(false);
 
-  useEffect(() => {
-    axios.get("/api/users").then(response => {
-      console.log("the response from the server is: ", server);
-    })
-  }, []);
 
   return (
     <LoadScript
