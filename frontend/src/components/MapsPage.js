@@ -24,12 +24,13 @@ function MapsPage() {
   const [showBusanInfo, setShowBusanInfo] = useState(false);
 
   return (
-    <LoadScript googleMapsApiKey="AIzaSyA3Sl55b_VglknOaF81KxYdwy2kjfi4vyI">
+    <LoadScript googleMapsApiKey="AIzaSyBFSNEVdf3LsfHZq-erCG1bZWUpBNj-xFQ">
       <GoogleMap
         style={{ width: '80%', height: '500px', borderRadius: '0 0 10px 10px'}}
         mapContainerStyle={containerStyle}
         center={center}
         zoom={7}
+        mapId="2b6d581e2141c1ff"
       >
         {/* {path.map((point, index) => (
               <Marker 
