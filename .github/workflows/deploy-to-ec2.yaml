@@ -48,7 +48,7 @@ jobs:
           sudo /usr/bin/pm2 stop server
           sudo /usr/bin/pm2 delete server
           sudo /usr/bin/pm2 start \
-          /home/ubuntu/junction2023/backend/dist/index.js --name server
+          /home/ubuntu/junction2023/backend/dist/index.js --name server -e PORT=80
           "
 
 
