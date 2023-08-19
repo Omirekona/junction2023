@@ -67,7 +67,11 @@ function App() {
                 <Preference1/>
               </Layout>
             } />
-            <Route path="/preference2" element={<Preference2 />} />
+            <Route path="/preference2" element={
+              <Layout>
+                <Preference2/>
+              </Layout>
+            } />
             <Route path="/preference3" element={<Preference3 />} />
           </Routes>
         </main>

@@ -46,12 +46,14 @@ function MapsPage() {
     }
     FIREBASE_AUTH.currentUser.getIdToken().then(decodedToken => {
       const bearerToken = "Bearer " + decodedToken
-      fetch("/route/new", {
+      fetch("/api/route/new", {
         headers: {
           Authorization: bearerToken
         }
       }).then(response => {
-        console.log("the response from: ", response.data)
+        return response.json();
+      }).then(response => {
+        console.log("response: ", response);
         setLoading(false);
       }).catch(error => {
         console.log("the error from the server: ", error)
