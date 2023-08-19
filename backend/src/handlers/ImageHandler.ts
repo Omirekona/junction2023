@@ -1,7 +1,7 @@
 import { Request, Response } from "express";
 import ImageService from "../services/ImageService";
-import HttpStatusCodes from "src/constants/HttpStatusCodes";
-import AttractionService from "src/services/AttractionService";
+import HttpStatusCodes from "../constants/HttpStatusCodes";
+import AttractionService from "../services/AttractionService";
 
 async function compare(req: Request, res: Response) {
   const { image, uc_seq, preference } = req.query;
