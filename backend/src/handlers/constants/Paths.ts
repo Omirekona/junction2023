@@ -11,6 +11,7 @@ const Paths = {
   Route: {
     Base: "/route",
     Get: "",
+    GetNew: "/new",
   },
   User: {
     Base: "/user",
@@ -19,6 +20,10 @@ const Paths = {
   Image: {
     Base: "/image",
     Compare: "/compare",
+  },
+  Mission: {
+    Base: "/mission",
+    Get: "",
   },
 } as const;
 

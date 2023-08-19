@@ -5,6 +5,8 @@ import FoodServiceAPI from "../constants/FoodService";
 import FestivalServiceAPI from "../constants/FestivalService";
 import { axiosInstance } from "../util/axios";
 import { getRandomElement, getRandomInt } from "../util";
+import routeDB from "../repos/route";
+import { Attraction } from "src/interfaces/Attraction";
 
 function getDistanceFromLatLonInKm(
   lat1: number,
@@ -30,7 +32,7 @@ function deg2rad(deg: number) {
   return deg * (Math.PI / 180);
 }
 
-function getLocationsFromPreference(preference: string) {
+function getLocationsFromPreference(preference: string): Promise<Attraction[]> {
   let query: Promise<AxiosResponse<any>>;
   let innerDataFieldName: string;
   switch (preference) {
@@ -84,20 +86,40 @@ function getLocationsFromPreference(preference: string) {
   }
   return query.then((res) => res.data[innerDataFieldName].item);
 }
+
 async function get(preference: string) {
-  const locations = (await getLocationsFromPreference(preference)) as any[];
+  const locations = await getLocationsFromPreference(preference);
   const pickNum = getRandomInt(3, 7);
-  let pickedLocations = new Set();
+  let pickedLocations = new Set<Attraction>();
   for (let i = 0; pickedLocations.size < pickNum; i++) {
     pickedLocations.add(getRandomElement(locations));
   }
 
-  return [...pickedLocations].sort((a: any, b: any) => {
+  return [...pickedLocations].sort((a: Attraction, b: Attraction) => {
     return a.UC_SEQ - b.UC_SEQ;
   });
 }
 
+async function getById(routeId: string) {
+  const route = await routeDB.getById(Number.parseInt(routeId));
+  return route;
+}
+
+async function getAllByUserId(userId: string) {
+  const routes = (await routeDB.getByUserId(userId)) as any[];
+  return routes;
+}
+
+async function create(name: string, route: unknown, user_id: string) {
+  await routeDB.create(name, user_id, JSON.stringify(route));
+  const maxID = await routeDB.getMaxID();
+  return routeDB.getById((maxID as any)["MAX(id)"] as number);
+}
+
 export default {
   get,
+  create,
+  getById,
+  getAllByUserId,
   getLocationsFromPreference,
 } as const;

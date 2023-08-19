@@ -15,7 +15,7 @@ function Login() {
 
         try {
             await signInWithEmailAndPassword(FIREBASE_AUTH, email, password);
-            navigate("/maps");
+            navigate("/preference1");
         } catch (error) {
             setError(error.message);
         }
