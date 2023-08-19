@@ -1,20 +1,27 @@
 import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
-
+import LOGO from '../constants/Junction-LOGO.png';
 function NavBar() {
     const [drawerOpen, setDrawerOpen] = useState(false);
 
     return (
         <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', padding: '10px', borderRadius: '10px 10px 0 0', backgroundColor: 'white', borderBottomWidth: '2px' }}>
             {/* Logo */}
+            
             <Link to="/">
-                <p>LOGO</p>
-                {/* <img src={LOGO} alt="Junction Logo" style={{ height: '50px' }} /> */}
+                <img src={LOGO} alt="Junction Logo" style={{ height: '50px' }} />
             </Link>
 
-            {/* Drawer Icon */}
-            <div onClick={() => [setDrawerOpen(!drawerOpen), console.log("drawer is open")]} style={{ cursor: 'pointer', zIndex: 15 }}>
-                &#9776;
+            <div style={{ display: 'flex', alignItems: 'center' }}>
+                {/* Search Icon */}
+                <div style={{ marginRight: '15px', cursor: 'pointer' }}>
+                    🔍
+                </div>
+
+                {/* Drawer Icon */}
+                <div onClick={() => [setDrawerOpen(!drawerOpen), console.log("drawer is open")]} style={{ cursor: 'pointer', zIndex: 15 }}>
+                    &#9776;
+                </div>
             </div>
 
             {/* Drawer Menu (if open) */}
