@@ -1,5 +1,4 @@
 import db from "./db";
-import { UserRole } from "./db";
 
 function create(uid: string, points: number = 0) {
   return new Promise((resolve, reject) => {
@@ -44,7 +43,7 @@ function addPoints(id: string, points: number) {
 function checkIfUserExists(uid: string) {
   return new Promise((resolve, reject) => {
     db.get(
-      "SELECT * FROM user WHERE uid = ?", 
+      "SELECT * FROM user WHERE id = ?", 
       [uid], 
       (err, row) => {
         if (err || !row) {
@@ -57,13 +56,12 @@ function checkIfUserExists(uid: string) {
 
 function insertUser(
   uid: string, 
-  role: UserRole = UserRole.Tourist, 
   points: number = 0
 ) {
   return new Promise((resolve, reject) => {
     db.run(
-      "INSERT INTO user (uid, role, points) VALUES (?, ?, ?, ?)",
-      [uid, role, points],
+      "INSERT INTO user (id, points) VALUES (?, ?);",
+      [uid, points],
       (err) => {
         if (err) {
           reject(err);
