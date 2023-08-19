@@ -16,7 +16,10 @@ async function compare(req: Request, res: Response) {
   if (result === undefined) {
     return res.status(HttpStatusCodes.INTERNAL_SERVER_ERROR);
   }
-  return res.status(HttpStatusCodes.OK).json(result);
+  return res.status(HttpStatusCodes.OK).json({
+    ...result,
+    original_image: attraction.MAIN_IMG_NORMAL,
+  });
 }
 
 export default {

@@ -11,6 +11,14 @@ async function get(uc_seq: string, preference: string) {
   );
 }
 
+async function getAll(preference: string) {
+  const allAttractions = await RouteService.getLocationsFromPreference(
+    preference
+  );
+  return allAttractions;
+}
+
 export default {
   get,
+  getAll,
 } as const;

@@ -1,10 +1,17 @@
 import { Database } from "sqlite3";
+import ATTRACTIONS from "../constants/index";
 
 const sqlite3 = require("sqlite3").verbose();
 const fs = require("fs");
 const path = require("path");
 
 const db = new Database(":memory:");
+
+const arr = [
+  ATTRACTIONS.bexco,
+  ATTRACTIONS.artGallery,
+  ATTRACTIONS.hallOfMovie,
+];
 
 export interface User {
   id: string;
@@ -72,9 +79,13 @@ db.serialize(() => {
     );
   // `route_id` and `progress` are used as foreign keys to indicate in which part of a route the mission belongs to
   db.run(
-    "CREATE TABLE mission (id INTEGER PRIMARY KEY, name TEXT, route_id NUMBER, user_id TEXT, info TEXT, progress INTEGER level INTEGER is_complete INTEGER)"
+    "CREATE TABLE mission (id INTEGER PRIMARY KEY, name TEXT, route_id NUMBER, user_id TEXT, info TEXT, progress INTEGER, level INTEGER, is_complete INTEGER)"
   );
-  console.log("the third statement is over");
+  db.run(
+    "INSERT INTO mission (name, route_id, user_id, info, progress, level, is_complete) VALUES ('mission1', 1, 'user1', 'info1', 0, 1, 0)"
+  );
+  db.run("INSERT INTO route (id, info) VALUES (1, ?)", [JSON.stringify(arr)]);
+  db.run("INSERT INTO routeanduser (uid, rid, progress) VALUES ('user1', 1, 0)");
 });
 
 export default db;

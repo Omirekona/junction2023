@@ -34,7 +34,8 @@ routeRouter.get(Paths.Route.Get, RouteHandler.get);
 userRouter.get("", UserHandler.get);
 // api/user -> create new user in db with firebase id
 userRouter.post("", UserHandler.create);
-// api/user/points -> add points to user
+// api/user/points?userId=${userId} -> add points to user
+// body should contain the point amount to add
 userRouter.post(Paths.User.Points, UserHandler.addPoints);
 
 // Image API

@@ -11,6 +11,13 @@ async function get(req: Request, res: Response) {
   return res.status(HttpStatusCodes.OK).json(attraction);
 }
 
+async function getAll(req: Request, res: Response) {
+  const { preference } = req.query;
+  const attractions = await AttractionService.getAll(preference as string);
+  return res.status(HttpStatusCodes.OK).json(attractions);
+}
+
 export default {
   get,
+  getAll,
 } as const;
