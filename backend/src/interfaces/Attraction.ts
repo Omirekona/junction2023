@@ -1,5 +1,5 @@
 export interface Attraction {
-  UC_SEQ: number; // id that is unique only in the given preference context
+  UC_SEQ: number; // unique content id
   MAIN_TITLE: string; // title of location
   GUGUN_NM: string;
   LAT: number;

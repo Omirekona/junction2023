@@ -3,8 +3,8 @@ import UserService from "../services/UserService";
 import HttpStatusCodes from "../constants/HttpStatusCodes";
 
 async function get(req: Request, res: Response) {
-  const { name } = req.query;
-  const user = await UserService.get(name as string);
+  const { id } = req.query;
+  const user = await UserService.get(id as string);
   if (!user) {
     return res.status(HttpStatusCodes.NOT_FOUND).json({
       error: "User not found",
@@ -14,14 +14,15 @@ async function get(req: Request, res: Response) {
 }
 
 async function create(req: Request, res: Response) {
-  const { name } = req.body;
-  await UserService.create(name);
+  const { id } = req.body;
+  await UserService.create(id);
   return res.status(HttpStatusCodes.OK);
 }
 
 async function addPoints(req: Request, res: Response) {
   const { points } = req.body;
-  await UserService.addPoints(points);
+  const { uid } = req.params;
+  await UserService.addPoints(uid, points);
   return res.status(HttpStatusCodes.OK);
 }
 
