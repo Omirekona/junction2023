@@ -4,9 +4,13 @@
 
 const Paths = {
   Base: "/api",
-  Attractions: {
-    Base: "/attractions",
+  Attraction: {
+    Base: "/attraction",
     Get: "/all",
+  },
+  Route: {
+    Base: "/route",
+    Get: "/get",
   },
 } as const;
 
