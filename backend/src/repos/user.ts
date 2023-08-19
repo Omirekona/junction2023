@@ -63,7 +63,7 @@ function insertUser(
 ) {
   return new Promise((resolve, reject) => {
     db.run(
-      "INSERT INTO user (uid, points) VALUES (?, ?)",
+      "INSERT INTO user (id, points) VALUES (?, ?)",
       [uid, points],
       (err) => {
         if (err) {
