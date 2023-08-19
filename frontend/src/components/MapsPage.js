@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import {
   GoogleMap,
   LoadScript,
@@ -7,6 +7,7 @@ import {
   InfoWindow,
   Marker,
 } from "@react-google-maps/api";
+import axios from 'axios';
 
 const containerStyle = {
   width: "100%",
@@ -29,6 +30,12 @@ const path = [
 function MapsPage() {
   const [showSeoulInfo, setShowSeoulInfo] = useState(false);
   const [showBusanInfo, setShowBusanInfo] = useState(false);
+
+  useEffect(() => {
+    axios.get("/api/users").then(response => {
+      console.log("the response from the server is: ", server);
+    })
+  }, []);
 
   return (
     <LoadScript

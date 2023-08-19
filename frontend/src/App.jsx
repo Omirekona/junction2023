@@ -13,6 +13,20 @@ import Preference2 from './recommendation/TwoSelect';
 import Preference3 from './recommendation/TripRoutes';
 import Copyright from './navigation/Copyright';
 
+import axios from "axios";
+import {FIREBASE_AUTH} from "./config/firebase";
+
+
+const queryClient = new QueryClient();
+
+
+axios.interceptors.request.use((config) => {
+  const jwtToken = FIREBASE_AUTH.currentUser.getIdToken();
+  if (jwtToken) {
+    config.headers["Authorization"] = "Bearer" + jwtToken;
+  }
+  return config;
+})
 
 function App() {
 

@@ -4,7 +4,7 @@ import { Link } from "react-router-dom";
 function HomePage() {
     return (
         <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', padding: '20px' }}>
-            <h1>Welcome to Navigo!</h1>
+            <h1 className = "text-3xl font-bold underline">Welcome to Navigo!</h1>
             
             <p style={{ marginTop: '50px', textAlign: 'center' }}>
             Navigo is a mobile web service that reimagines the joy of traveling. It's an AI-powered "Geoguesser"-style game that offers mission games that go beyond just sightseeing to uncover hidden local attractions.

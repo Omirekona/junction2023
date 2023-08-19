@@ -28,6 +28,7 @@
     "deepai": "^1.0.23",
     "express": "^4.18.2",
     "express-async-errors": "^3.1.1",
+    "firebase-admin": "^11.10.1",
     "inserturlparams": "^1.0.1",
     "jsonfile": "^6.1.0",
     "module-alias": "^2.2.3",

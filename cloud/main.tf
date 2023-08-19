@@ -97,8 +97,20 @@ resource "aws_instance" "main_server" {
   subnet_id = aws_subnet.public_subnet_one.id
 }
 
+resource "aws_instance" "main_server_new" {
+  ami = "ami-0c9c942bd7bf113a2"
+  instance_type = "t2.micro"
+  key_name = "general"
+  vpc_security_group_ids = [aws_security_group.main_server_sg.id]
+  subnet_id = aws_subnet.public_subnet_one.id
+}
+
 resource "aws_eip" "main_server_eip" {
   instance = aws_instance.main_server.id
+}
+
+resource "aws_eip" "main_server_new_eip" {
+  instance = aws_instance.main_server_new.id
 }
 
 
