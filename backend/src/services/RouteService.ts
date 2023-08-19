@@ -85,6 +85,7 @@ function getLocationsFromPreference(preference: string) {
   }
   return query.then((res) => res.data[innerDataFieldName].item);
 }
+
 async function get(preference: string) {
   const locations = (await getLocationsFromPreference(preference)) as any[];
   const pickNum = getRandomInt(3, 7);
@@ -103,8 +104,15 @@ async function getById(routeId: string) {
   return route;
 }
 
+async function create(name: string, route: unknown, user_id: string) {
+  await routeDB.create(name, user_id, JSON.stringify(route));
+  const maxID = await routeDB.getMaxID();
+  return routeDB.getById(maxID as number);
+}
+
 export default {
   get,
+  create,
   getById,
   getLocationsFromPreference,
 } as const;

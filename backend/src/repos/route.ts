@@ -1,10 +1,10 @@
 import db from "./db";
 
-function create(name: string, user_id: string, info: any) {
+function create(name: string, user_id: string, info: string) {
   return new Promise((resolve, reject) => {
     db.run(
       "INSERT INTO route (name,user_id,info,progress) VALUES (?, ?, ?, 0)",
-      [name, user_id, JSON.stringify(info)],
+      [name, user_id, info],
       (err) => {
         if (err) {
           return reject(err);
@@ -28,6 +28,18 @@ function getById(id: number) {
   );
 }
 
+function getByUserId(user_id: string) {
+  return new Promise((resolve, reject) =>
+    db.all("SELECT * FROM route WHERE user_id = ?", [user_id], (err, rows) => {
+      if (err) {
+        return reject(err);
+      } else {
+        return resolve(rows);
+      }
+    })
+  );
+}
+
 function incrementProgress(id: number) {
   return new Promise((resolve, reject) => {
     db.run(
@@ -44,8 +56,22 @@ function incrementProgress(id: number) {
   });
 }
 
+function getMaxID() {
+  return new Promise((resolve, reject) => {
+    db.get("SELECT MAX(id) FROM route", [], (err, row) => {
+      if (err) {
+        return reject(err);
+      } else {
+        return resolve(row);
+      }
+    });
+  });
+}
+
 export default {
   create,
   getById,
+  getByUserId,
+  getMaxID,
   incrementProgress,
 } as const;

@@ -1,6 +1,6 @@
 import ImageServiceConstants from "../constants/ImageService";
+import deepai from "deepai";
 
-const deepai = require("deepai");
 deepai.setApiKey(ImageServiceConstants.IMAGE_SIMILARITY_KEY);
 
 async function compare(uri: string, baselineURI: string) {
