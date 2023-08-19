@@ -110,7 +110,7 @@ async function getAllByUserId(userId: string) {
   return routes;
 }
 
-async function create(name: string, route: unknown, user_id: string) {
+async function create(route: unknown, user_id: string) {
   await routeDB.create(user_id, JSON.stringify(route));
   const maxID = await routeDB.getMaxID();
   return routeDB.getById((maxID as any) as number);

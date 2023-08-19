@@ -8,11 +8,7 @@ async function getNew(req: Request, res: Response) {
     console.log(preference);
     const route = await RouteService.get(preference as string);
     if (route !== undefined) {
-      const dbRoute = await RouteService.create(
-        route[0].TITLE as string,
-        route,
-        userId as string
-      );
+      const dbRoute = await RouteService.create(route, userId as string);
       return res.status(HttpStatusCodes.OK).json(dbRoute);
     } else {
       return res.status(HttpStatusCodes.INTERNAL_SERVER_ERROR);
