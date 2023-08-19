@@ -5,6 +5,7 @@ import AttractionHandler from "./AttractionHandler";
 import RouteHandler from "./RouteHandler";
 import UserHandler from "./UserHandler";
 import ImageHandler from "./ImageHandler";
+import MissionHandler from "./MissionHandler";
 
 // **** Variables **** //
 
@@ -13,6 +14,7 @@ const attractionRouter = Router();
 const routeRouter = Router();
 const userRouter = Router();
 const imageRouter = Router();
+const missionRouter = Router();
 
 // Get an attraction's info
 // api/attraction?uc_seq=${uc_seq}&preference=${preference}
@@ -40,11 +42,14 @@ userRouter.post(Paths.User.Points, UserHandler.addPoints);
 // compare the given `image` with the attraction's image, which is derived from UC_SEQ(unique id for attraction per preference) and preference
 imageRouter.get(Paths.Image.Compare, ImageHandler.compare);
 
+missionRouter.get(Paths.Mission.Get, MissionHandler.get);
+
 // Add the feature specific routers to api router
 apiRouter.use(Paths.Attraction.Base, attractionRouter);
 apiRouter.use(Paths.Route.Base, routeRouter);
 apiRouter.use(Paths.User.Base, userRouter);
 apiRouter.use(Paths.Image.Base, imageRouter);
+apiRouter.use(Paths.Mission.Base, missionRouter);
 
 // **** Export default **** //
 

@@ -21,6 +21,10 @@ const Paths = {
     Base: "/image",
     Compare: "/compare",
   },
+  Mission: {
+    Base: "/mission",
+    Get: "",
+  },
 } as const;
 
 // **** Export **** //
