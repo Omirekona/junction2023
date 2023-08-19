@@ -6,7 +6,7 @@ const Paths = {
   Base: "/api",
   Attraction: {
     Base: "/attraction",
-    Get: "/all",
+    Get: "",
   },
   Route: {
     Base: "/route",

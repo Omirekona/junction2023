@@ -13,7 +13,7 @@ const routeRouter = Router();
 const userRouter = Router();
 
 // Get all attractions
-attractionRouter.get(Paths.Attraction.Get, AttractionHandler.getAll);
+attractionRouter.get(Paths.Attraction.Get, AttractionHandler.get);
 
 // Get route by preference
 // api/route/get?preference=${preference}

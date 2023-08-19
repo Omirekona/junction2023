@@ -1,4 +1,5 @@
 import AttractionServiceAPI from "../constants/AttractionService";
+import RouteService from "./RouteService";
 import { axiosInstance } from "../util/axios";
 
 function getAll() {
@@ -20,6 +21,14 @@ function getAll() {
   });
 }
 
+async function get(uc_seq: string, preference: string) {
+  const allAttractions = (await RouteService.getLocationsFromPreference(
+    preference
+  )) as any[];
+  return allAttractions.find((attraction) => attraction.UC_SEQ === uc_seq);
+}
+
 export default {
+  get,
   getAll,
 } as const;
