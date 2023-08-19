@@ -8,7 +8,7 @@ async function getNew(req: Request, res: Response) {
   const route = await RouteService.get(preference as string);
   if (route !== undefined) {
     const dbRoute = await RouteService.create(
-      (route[0] as any).TITLE as string,
+      route[0].TITLE as string,
       route,
       userId as string
     );

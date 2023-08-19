@@ -6,6 +6,7 @@ import FestivalServiceAPI from "../constants/FestivalService";
 import { axiosInstance } from "../util/axios";
 import { getRandomElement, getRandomInt } from "../util";
 import routeDB from "../repos/route";
+import { Attraction } from "src/interfaces/Attraction";
 
 function getDistanceFromLatLonInKm(
   lat1: number,
@@ -31,7 +32,7 @@ function deg2rad(deg: number) {
   return deg * (Math.PI / 180);
 }
 
-function getLocationsFromPreference(preference: string) {
+function getLocationsFromPreference(preference: string): Promise<Attraction[]> {
   let query: Promise<AxiosResponse<any>>;
   let innerDataFieldName: string;
   switch (preference) {
@@ -87,14 +88,14 @@ function getLocationsFromPreference(preference: string) {
 }
 
 async function get(preference: string) {
-  const locations = (await getLocationsFromPreference(preference)) as any[];
+  const locations = await getLocationsFromPreference(preference);
   const pickNum = getRandomInt(3, 7);
-  let pickedLocations = new Set();
+  let pickedLocations = new Set<Attraction>();
   for (let i = 0; pickedLocations.size < pickNum; i++) {
     pickedLocations.add(getRandomElement(locations));
   }
 
-  return [...pickedLocations].sort((a: any, b: any) => {
+  return [...pickedLocations].sort((a: Attraction, b: Attraction) => {
     return a.UC_SEQ - b.UC_SEQ;
   });
 }
