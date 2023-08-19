@@ -12,7 +12,7 @@ const App = () => {
     }, []);
 
     return (
-        <div> sdfsdf the response from server is: {hello} yay seeming works now lol wow</div>
+        <div> the response from server is: {hello} yay seeming works now lol wow</div>
     )
 }
 
