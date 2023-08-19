@@ -6,10 +6,6 @@ const path = require("path");
 
 const db = new Database(":memory:");
 
-export const enum UserRole {
-  Tourist = "tourist",
-}
-
 db.serialize(() => {
   db.run("PRAGMA foreign_keys = ON", (err) => {
     if (err) {
