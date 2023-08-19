@@ -1,63 +1,24 @@
 import db from "./db";
-import {UserRole} from "./db";
+import { UserRole } from "./db";
 
-
-function checkIfUserExists(uid: string) {
-  return new Promise((resolve, reject) => {
-    db.get(
-      "SELECT * FROM user WHERE uid = ?", 
-      [uid], 
-      (err, row) => {
-        if (err || !row) {
-          reject(err);
-        }
-        resolve(null);
-      })
-  })
-}
-
-function insertUser(
-  uid: string, 
-  role: UserRole = UserRole.Tourist, 
-  points: number = 0
-) {
+function create(uid: string, points: number = 0) {
   return new Promise((resolve, reject) => {
     db.run(
-      "INSERT INTO user (uid, role, points) VALUES (?, ?, ?, ?)",
-      [uid, role, points],
+      "INSERT INTO user (id, points) VALUES (?, ?)",
+      [uid, points],
       (err) => {
         if (err) {
           reject(err);
         }
         resolve(null);
-      }
-    )
-  })
-}
-
-function insertRoute(uid: string, route: JSON) {
-}
-
-
-function create(name: string) {
-  return new Promise((resolve, reject) => {
-    db.run(
-      "INSERT INTO user (name, points) VALUES (?, ?)",
-      [name, 0],
-      (err) => {
-        if (err) {
-          return reject(err);
-        } else {
-          return resolve(null);
-        }
       }
     );
   });
 }
 
-function get(name: string) {
+function get(id: string) {
   return new Promise((resolve, reject) =>
-    db.get("SELECT * FROM user WHERE name = ?", [name], (err, row) => {
+    db.get("SELECT * FROM user WHERE id = ?", [id], (err, row) => {
       if (err) {
         return reject(err);
       } else {
@@ -67,9 +28,9 @@ function get(name: string) {
   );
 }
 
-function addPoints(points: number) {
+function addPoints(id: string, points: number) {
   return new Promise((resolve, reject) => {
-    db.run("UPDATE user SET points = points + ?", [points], (err) => {
+    db.run("UPDATE user SET points = points + ? WHERE id = ?", [points, id], (err) => {
       if (err) {
         return reject(err);
       } else {
@@ -79,11 +40,8 @@ function addPoints(points: number) {
   });
 }
 
-
 export default {
   create,
   get,
   addPoints,
-  checkIfUserExists,
-  insertUser
 } as const;

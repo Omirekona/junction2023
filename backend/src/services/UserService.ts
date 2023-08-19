@@ -1,15 +1,15 @@
 import userDB from "../repos/user";
 
-function create(name: string) {
-  return userDB.create(name);
+function create(id: string) {
+  return userDB.create(id);
 }
 
-function get(name: string) {
-  return userDB.get(name);
+function get(id: string) {
+  return userDB.get(id);
 }
 
-function addPoints(points: number) {
-  return userDB.addPoints(points);
+function addPoints(id: string, points: number) {
+  return userDB.addPoints(id, points);
 }
 
 export default {

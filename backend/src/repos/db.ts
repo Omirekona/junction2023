@@ -15,33 +15,43 @@ db.serialize(() => {
     if (err) {
       console.log("failed to enable foreign key constraints", err);
     } else {
-      console.log("foreing key support enabled")
+      console.log("foreing key support enabled");
     }
-  }).run(
-    `CREATE TABLE user ( 
-      uid TEXT PRIMARY KEY, 
-      role TEXT, 
-      points INTEGER
-    );`, (err) => {
-      console.log("error: ", err);
-    }
-  ).run(
-    `CREATE TABLE route (
-        rid TEXT PRIMARY KEY,
-        route JSON
-    );`, (err) => {
-      console.log("the error: ", err);
-    }
-  ).run(
-    `CREATE TABLE routeanduser (
+  })
+    .run(
+      `CREATE TABLE user ( 
+        id TEXT PRIMARY KEY, 
+        points INTEGER
+    );`,
+      (err) => {
+        if (err) console.log("error: ", err);
+      }
+    )
+    .run(
+      `CREATE TABLE route (
+        id TEXT PRIMARY KEY,
+        route TEXT
+    );`,
+      (err) => {
+        if (err) console.log("the error: ", err);
+      }
+    )
+    .run(
+      `CREATE TABLE routeanduser (
       uid TEXT,
       rid INTEGER,
+      progress INTEGER,
       PRIMARY KEY (uid, rid)
-    );`, (err) => {
-      console.log("the error: ", err);
-    }
-  )
-  console.log("the third statement is over")
+    );`,
+      (err) => {
+        if (err) console.log("the error: ", err);
+      }
+    );
+  // `route_id` and `progress` are used as foreign keys to indicate in which part of a route the mission belongs to
+  db.run(
+    "CREATE TABLE mission (id INTEGER PRIMARY KEY, name TEXT, route_id NUMBER, info TEXT, progress INTEGER level INTEGER is_complete INTEGER)"
+  );
+  console.log("the third statement is over");
 });
 
 export default db;
