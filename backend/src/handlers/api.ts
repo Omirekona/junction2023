@@ -19,6 +19,7 @@ attractionRouter.get(Paths.Attraction.Get, AttractionHandler.get);
 
 // Get route by preference
 // api/route/get?preference=${preference}
+routeRouter.get(Paths.Route.GetNew, RouteHandler.getNew);
 routeRouter.get(Paths.Route.Get, RouteHandler.get);
 
 // User API

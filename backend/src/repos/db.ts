@@ -11,7 +11,7 @@ db.serialize(() => {
     "CREATE TABLE user (id INTEGER PRIMARY KEY, name TEXT, points INTEGER)"
   );
   db.run(
-    "CREATE TABLE route (id NUMBER, name TEXT, user_id NUMBER, info TEXT)"
+    "CREATE TABLE route (id INTEGER PRIMARY KEY, name TEXT, user_id NUMBER, info TEXT, progress INTEGER)"
   );
 });
 

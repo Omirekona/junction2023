@@ -5,6 +5,7 @@ import FoodServiceAPI from "../constants/FoodService";
 import FestivalServiceAPI from "../constants/FestivalService";
 import { axiosInstance } from "../util/axios";
 import { getRandomElement, getRandomInt } from "../util";
+import routeDB from "../repos/route";
 
 function getDistanceFromLatLonInKm(
   lat1: number,
@@ -97,7 +98,13 @@ async function get(preference: string) {
   });
 }
 
+async function getById(routeId: string) {
+  const route = await routeDB.getById(Number.parseInt(routeId));
+  return route;
+}
+
 export default {
   get,
+  getById,
   getLocationsFromPreference,
 } as const;

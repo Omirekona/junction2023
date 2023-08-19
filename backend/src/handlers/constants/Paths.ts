@@ -11,6 +11,7 @@ const Paths = {
   Route: {
     Base: "/route",
     Get: "",
+    GetNew: "/new",
   },
   User: {
     Base: "/user",
