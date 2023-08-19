@@ -11,6 +11,8 @@ import NavBar from './navigation/NavBar';
 import Preference1 from './recommendation/MultipleSelect';
 import Preference2 from './recommendation/TwoSelect';
 import Preference3 from './recommendation/TripRoutes';
+import Copyright from './navigation/Copyright';
+
 
 function App() {
 
@@ -65,6 +67,7 @@ function App() {
             <Route path="/preference3" element={<Preference3 />} />
           </Routes>
         </main>
+        <Copyright />
       </div>
     </Router>
   );
