@@ -1,5 +1,8 @@
 import React from "react";
 import '../App.css';
+import { Button, Checkbox } from '@mui/material';
+import { FormGroup, FormControlLabel } from '@mui/material';
+
 function MultipleSelect() {
     return (
     <div>What kind of trip do you prefer?
@@ -34,9 +37,23 @@ function MultipleSelect() {
       </label>
       </div>
 
-  
+      <FormGroup>
+  <FormControlLabel control={<Checkbox defaultChecked />} label="Label" />
+  <FormControlLabel required control={<Checkbox />} label="Required" />
+  <FormControlLabel disabled control={<Checkbox />} label="Disabled" />
+</FormGroup>
+
+
+
+      <div className="mt-8 mb-10">
+    <Button variant="contained" >
+      Next
+    </Button>
+      </div>
 
     </div>
+      
+
 
     );
   }
