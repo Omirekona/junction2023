@@ -13,6 +13,7 @@ function get(preference: string) {
         params: {
           resultType: "json",
           serviceKey: ShoppingServiceAPI.BUSAN_SHOPPING_SERVICE_DECODING_KEY,
+          numOfRows: 38,
         },
       });
       break;
@@ -21,6 +22,7 @@ function get(preference: string) {
         params: {
           resultType: "json",
           serviceKey: FoodServiceAPI.BUSAN_FOOD_SERVICE_DECODING_KEY,
+          numOfRows: 271,
         },
       });
       break;
@@ -29,6 +31,7 @@ function get(preference: string) {
         params: {
           resultType: "json",
           serviceKey: FestivalServiceAPI.BUSAN_FESTIVAL_SERVICE_DECODING_KEY,
+          numOfRows: 35,
         },
       });
       break;

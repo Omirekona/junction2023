@@ -14,6 +14,7 @@ const routeRouter = Router();
 attractionRouter.get(Paths.Attraction.Get, AttractionHandler.getAll);
 
 // Get route by preference
+// api/route/get?preference=${preference}
 routeRouter.get(Paths.Route.Get, RouteHandler.get);
 
 // Add the feature specific routers to api router
