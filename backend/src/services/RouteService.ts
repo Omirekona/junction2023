@@ -107,7 +107,7 @@ async function getById(routeId: string) {
 async function create(name: string, route: unknown, user_id: string) {
   await routeDB.create(name, user_id, JSON.stringify(route));
   const maxID = await routeDB.getMaxID();
-  return routeDB.getById(maxID as number);
+  return routeDB.getById((maxID as any)["MAX(id)"] as number);
 }
 
 export default {

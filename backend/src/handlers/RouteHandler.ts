@@ -12,7 +12,6 @@ async function getNew(req: Request, res: Response) {
       route,
       userId as string
     );
-
     return res.status(HttpStatusCodes.OK).json(dbRoute);
   } else {
     return res.status(HttpStatusCodes.INTERNAL_SERVER_ERROR);

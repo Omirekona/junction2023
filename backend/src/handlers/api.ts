@@ -18,8 +18,9 @@ const imageRouter = Router();
 attractionRouter.get(Paths.Attraction.Get, AttractionHandler.get);
 
 // Get route by preference
-// api/route/get?preference=${preference}
+// api/route/new?preference=${preference}
 routeRouter.get(Paths.Route.GetNew, RouteHandler.getNew);
+// api/route?routeId=${routeId}
 routeRouter.get(Paths.Route.Get, RouteHandler.get);
 
 // User API

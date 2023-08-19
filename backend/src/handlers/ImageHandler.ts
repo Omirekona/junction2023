@@ -13,6 +13,9 @@ async function compare(req: Request, res: Response) {
     image as string,
     attraction.MAIN_IMG_NORMAL
   );
+  if (result === undefined) {
+    return res.status(HttpStatusCodes.INTERNAL_SERVER_ERROR);
+  }
   return res.status(HttpStatusCodes.OK).json(result);
 }
 
