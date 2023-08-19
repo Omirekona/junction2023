@@ -3,7 +3,8 @@ import { GoogleMap, LoadScript, Polyline, Circle, InfoWindow, Marker } from '@re
 
 const containerStyle = {
   width: '100%',
-  height: '600px'
+  height: '600px',
+  zIndex: 1,
 };
 
 const center = {
@@ -25,6 +26,7 @@ function MapsPage() {
   return (
     <LoadScript googleMapsApiKey="AIzaSyA3Sl55b_VglknOaF81KxYdwy2kjfi4vyI">
       <GoogleMap
+        style={{ width: '80%', height: '500px', borderRadius: '0 0 10px 10px'}}
         mapContainerStyle={containerStyle}
         center={center}
         zoom={7}

@@ -6,7 +6,7 @@ const Paths = {
   Base: "/api",
   Attraction: {
     Base: "/attraction",
-    Get: "/all",
+    Get: "",
   },
   Route: {
     Base: "/route",
@@ -15,6 +15,10 @@ const Paths = {
   User: {
     Base: "/user",
     Points: "/points",
+  },
+  Image: {
+    Base: "/image",
+    Compare: "/compare",
   },
 } as const;
 

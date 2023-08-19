@@ -99,4 +99,5 @@ async function get(preference: string) {
 
 export default {
   get,
+  getLocationsFromPreference,
 } as const;
