@@ -4,15 +4,13 @@
 
 import express, { Request, Response, NextFunction } from "express";
 import path from "path";
-
-import admin from "./firebase/firebase";
-
+import _ from "./firebase/firebase";//just to make sure that is gets inited
 import "express-async-errors";
-
 import BaseRouter from "./handlers/api";
 import Paths from "./handlers/constants/Paths";
 
-import user from "./repos/user";
+import { verifyTokenMiddleware } from "./firebase/firebase";
+
 
 // **** Variables **** //
 
@@ -28,27 +26,6 @@ interface RequestWithUID extends Request {
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 app.use(express.static(path.resolve(__dirname, "..", "static")));
-
-const verifyTokenMiddleware = async (req: RequestWithUID, res: Response, next: NextFunction) => {
-  const jwtToken = req.headers.authorization?.split("Bearer ")[1];
-  console.log("req.headers: ", req.headers);
-  if (!jwtToken) {
-    return res.status(403).send("Unauthorized");
-  }
-
-  try {
-    const decodedToken = await admin.auth().verifyIdToken(jwtToken);
-    const doesUserExist = await user.checkIfUserExists(decodedToken.uid);
-    if (!doesUserExist) {
-      user.insertUser(decodedToken.uid);
-    }
-    req.uid = decodedToken.uid;
-    next();
-  } catch (error) {
-    console.log("there was an error: ", error);
-    res.status(403).send("Unauthorized");
-  }
-}
 
 app.use("/api/users", verifyTokenMiddleware);
 
