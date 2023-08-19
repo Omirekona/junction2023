@@ -7,19 +7,18 @@ import LoginPage from './auth/Login';
 import RegisterPage from './auth/Register';
 import ForgotPasswordPage from './auth/ForgotPassword';
 import './App.css';
-import Drawer from 'react-modern-drawer'
+import NavBar from './navigation//NavBar';
 
 function App() {
-  const [isOpen, setIsOpen] = useState(false);
-  const toggleDrawer = () => {
-    setIsOpen((prevState) => !prevState);
-  };
 
   return (
     <Router>
       <div className="App" style={{backgroundColor: 'beige'}}>
         <main>
           {/* Route Handling */}
+          <header> 
+            <NavBar />
+        </header>
           <Routes>
             <Route exact path="/" element={<HomePage />} />
             <Route path="/login" element={<LoginPage />} />
@@ -29,9 +28,6 @@ function App() {
             <Route path="/forgot-password" element={<ForgotPasswordPage/>} />
           </Routes>
         </main>
-
-        <header> 
-        </header>
       </div>
     </Router>
   );
