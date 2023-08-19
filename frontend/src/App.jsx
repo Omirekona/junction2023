@@ -4,6 +4,8 @@ import HomePage from './components/HomePage';
 import MapsPage from './components/MapsPage';
 import MissionPage from './components/MissionPage';
 import LoginPage from './auth/Login';
+import RegisterPage from './auth/Register';
+import ForgotPasswordPage from './auth/ForgotPassword';
 import './App.css';
 import Drawer from 'react-modern-drawer'
 
@@ -23,13 +25,12 @@ function App() {
             <Route path="/login" element={<LoginPage />} />
             <Route path="/maps" element={<MapsPage />}/>
             <Route path="/mission" element={<MissionPage/>} />
+            <Route path="/register" element={<RegisterPage/>} />
+            <Route path="/forgot-password" element={<ForgotPasswordPage/>} />
           </Routes>
         </main>
 
         <header> 
-            <div className="header">
-                <button onClick={toggleDrawer}>Open</button>
-            </div>
         </header>
       </div>
     </Router>
