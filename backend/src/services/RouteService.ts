@@ -4,7 +4,7 @@ import ShoppingServiceAPI from "../constants/ShoppingService";
 import FoodServiceAPI from "../constants/FoodService";
 import FestivalServiceAPI from "../constants/FestivalService";
 import { axiosInstance } from "../util/axios";
-import { getRandomElement, getRandomInt } from "@src/util";
+import { getRandomElement, getRandomInt } from "../util";
 
 function getDistanceFromLatLonInKm(
   lat1: number,
@@ -92,7 +92,9 @@ async function get(preference: string) {
     pickedLocations.add(getRandomElement(locations));
   }
 
-  return [...pickedLocations].sort((a:any,b:any)=>{return a.UC_SEQ - b.UC_SEQ});
+  return [...pickedLocations].sort((a: any, b: any) => {
+    return a.UC_SEQ - b.UC_SEQ;
+  });
 }
 
 export default {
