@@ -104,6 +104,11 @@ async function getById(routeId: string) {
   return route;
 }
 
+async function getAllByUserId(userId: string) {
+  const routes = (await routeDB.getByUserId(userId)) as any[];
+  return routes;
+}
+
 async function create(name: string, route: unknown, user_id: string) {
   await routeDB.create(name, user_id, JSON.stringify(route));
   const maxID = await routeDB.getMaxID();
@@ -114,5 +119,6 @@ export default {
   get,
   create,
   getById,
+  getAllByUserId,
   getLocationsFromPreference,
 } as const;
