@@ -50,33 +50,34 @@ nav {
   transition: transform 0.3s ease-in-out;
 }
 
-.drawerClosed {
-  transform: translateX(-100%);
-}
-
-.drawerOpen {
-  transform: translateX(0);
-}
-
+/* Your CSS file */
 .custom-checkbox {
+  position: relative;
+  display: inline-block;
+}
+
+.custom-checkbox input[type="checkbox"] {
+  display: none;
+}
+
+/* Style for the unchecked state */
+.custom-checkbox::before {
+  content: '';
   display: inline-block;
   width: 20px;
   height: 20px;
-  background-color: white;
-  border: 2px solid blue;
-  border-radius: 10px; /* to make it rounded */
-  cursor: pointer;
-  position: relative;
-  margin-right: 5px;
+  border-radius: 50%;  /* To make it circular */
+  border: 1px solid gray;
+  margin-right: 8px;
+  vertical-align: middle;
+  background-color: blue;  /* Assuming you want a white background for unchecked state */
 }
 
-.custom-checkbox.checked {
+/* Style for the checked state */
+.custom-checkbox input[type="checkbox"]:checked + span::before {
   background-color: blue;
+  border: none;
 }
 
-/* Hide the default checkbox */
-.hidden-checkbox {
-  display: none;
-}
 
   

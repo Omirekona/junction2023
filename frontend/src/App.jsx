@@ -26,7 +26,7 @@ function App() {
 
   return (
     <Router>
-      <div className="App" style={{ backgroundColor: 'beige' }}>
+      <div className="App" style={{ backgroundColor: 'white' }}>
         <main>
           {/* Route Handling */}
           <Routes>

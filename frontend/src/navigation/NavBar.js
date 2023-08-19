@@ -5,7 +5,7 @@ function NavBar() {
     const [drawerOpen, setDrawerOpen] = useState(false);
 
     return (
-        <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', padding: '10px', borderRadius: '10px 10px 0 0', backgroundColor: 'white' }}>
+        <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', padding: '10px', borderRadius: '10px 10px 0 0', backgroundColor: 'white', borderBottomWidth: '2px' }}>
             {/* Logo */}
             <Link to="/">
                 <p>LOGO</p>
