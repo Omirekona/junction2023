@@ -29,24 +29,25 @@ app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 app.use(express.static(path.resolve(__dirname, "..", "static")));
 
-const verifyTokenMiddleware = (req: RequestWithUID, res: Response, next: NextFunction) => {
+const verifyTokenMiddleware = async (req: RequestWithUID, res: Response, next: NextFunction) => {
   const jwtToken = req.headers.authorization?.split("Bearer ")[1];
   console.log("req.headers: ", req.headers);
   if (!jwtToken) {
     return res.status(403).send("Unauthorized");
   }
-  admin.auth().verifyIdToken(jwtToken).then(decodedToken => {
-    if (!user.checkIfUserExists(decodedToken.uid)) {
-      console.log("it is a new user");
+
+  try {
+    const decodedToken = await admin.auth().verifyIdToken(jwtToken);
+    const doesUserExist = await user.checkIfUserExists(decodedToken.uid);
+    if (!doesUserExist) {
       user.insertUser(decodedToken.uid);
     }
-    console.log("it is an existing user");
     req.uid = decodedToken.uid;
     next();
-  }).catch(error => {
-    console.log("error verifying the token", error);
+  } catch (error) {
+    console.log("there was an error: ", error);
     res.status(403).send("Unauthorized");
-  })
+  }
 }
 
 app.use("/api/users", verifyTokenMiddleware);
