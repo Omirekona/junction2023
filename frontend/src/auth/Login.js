@@ -16,7 +16,7 @@ function Login() {
         try {
             const result = await signInWithEmailAndPassword(FIREBASE_AUTH, email, password);
             console.log("the result of the authentication is: ", result);
-            navigate("/preference1");
+            navigate("/maps");
         } catch (error) {
             setError(error.message);
         }

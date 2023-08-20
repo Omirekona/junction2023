@@ -92,7 +92,8 @@ function MapsPage() {
                 key={index}
                 position={point}
                 icon={{
-                  url: "https://maps.gstatic.com/mapfiles/markers2/marker.png",
+                  url: "https://www.google.com/url?sa=i&url=https%3A%2F%2Fwww.pngall.com%2Fred-circle-png%2F&psig=AOvVaw2GbX4q_NckDSA25mCDpfV9&ust=1692578957046000&source=images&cd=vfe&opi=89978449&ved=0CA8QjRxqFwoTCOCOrY2C6oADFQAAAAAdAAAAABAE",
+                  // url: "https://maps.gstatic.com/mapfiles/markers2/marker.png",
                   scaledSize: new window.google.maps.Size(40, 40)  // Adjust size as needed
                 }}
               />
