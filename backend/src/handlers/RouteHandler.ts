@@ -25,9 +25,10 @@ async function getNew(req: RequestWithUID, res: Response) {
   }
 }
 
-async function getById(req: Request, res: Response) {
+async function getById(req: RequestWithUID, res: Response) {
   const { routeId } = req.query;
-  const route = await RouteService.getById(routeId as string);
+  const userId = req.uid
+  const route = await RouteService.getById(routeId as string, userId as string);
   return res.status(HttpStatusCodes.OK).json(route);
 }
 

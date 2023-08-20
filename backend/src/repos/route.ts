@@ -82,10 +82,27 @@ function getMaxID() {
   });
 }
 
+function getRouteAndUser(uid: string, rid: number) {
+  return new Promise((resolve, reject) => {
+    db.get(
+      "SELECT * FROM routeanduser WHERE uid = ? AND rid = ?",
+      [uid, rid],
+      (err, row) => {
+        if (err) {
+          return reject(err);
+        } else {
+          return resolve(row);
+        }
+      }
+    );
+  });
+}
+
 export default {
   create,
   getById,
   getByUserId,
   getMaxID,
+  getRouteAndUser,
   incrementProgress,
 } as const;

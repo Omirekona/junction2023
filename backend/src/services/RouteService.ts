@@ -7,6 +7,7 @@ import { axiosInstance } from "../util/axios";
 import { getRandomElement, getRandomInt } from "../util";
 import routeDB from "../repos/route";
 import { Attraction } from "src/interfaces/Attraction";
+import { Route, RouteAndUser } from "src/repos/db";
 
 function getDistanceFromLatLonInKm(
   lat1: number,
@@ -100,20 +101,35 @@ async function get(preference: string) {
   });
 }
 
-async function getById(routeId: string) {
-  const route = await routeDB.getById(Number.parseInt(routeId));
-  return route;
+async function getById(routeId: string, userId: string) {
+  const rid = Number.parseInt(routeId);
+  const route = await routeDB.getById(rid);
+  const routeAndUser = await routeDB.getRouteAndUser(userId, rid);
+  return {
+    ...(route as Route),
+    progress: (routeAndUser as RouteAndUser).progress,
+  };
 }
 
 async function getAllByUserId(userId: string) {
-  const routes = (await routeDB.getByUserId(userId)) as any[];
-  return routes;
+  const routes = (await routeDB.getByUserId(userId)) as Route[];
+  const routesWithProgress = routes.map(async (route) => {
+    const routeAndUser = (await routeDB.getRouteAndUser(
+      userId,
+      route.id
+    )) as RouteAndUser;
+    return {
+      ...route,
+      progress: routeAndUser.progress,
+    };
+  });
+  return routesWithProgress;
 }
 
 async function create(route: unknown, user_id: string) {
   await routeDB.create(user_id, JSON.stringify(route));
   const maxID = await routeDB.getMaxID();
-  return routeDB.getById((maxID as any) as number);
+  return routeDB.getById(maxID as any as number);
 }
 
 async function incrementProgress(uid: string, rid: number) {
