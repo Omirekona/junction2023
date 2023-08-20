@@ -18,7 +18,7 @@ const app = express();
 
 // **** Setup **** //
 
-interface RequestWithUID extends Request {
+export interface RequestWithUID extends Request {
   uid?: string
 }
 
@@ -27,7 +27,7 @@ app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 app.use(express.static(path.resolve(__dirname, "..", "static")));
 
-app.use("/api/users", verifyTokenMiddleware);
+app.use("/api", verifyTokenMiddleware);
 
 app.get("/api/users", (req: RequestWithUID, res) => {
   res.send(`something protected probably: ${req.uid}`)

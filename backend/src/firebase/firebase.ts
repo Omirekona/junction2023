@@ -1,18 +1,19 @@
 import admin from "firebase-admin";
 const serviceAccount = require("./service.json");
 
-import {Request, Response, NextFunction} from "express";
+import { Request, Response, NextFunction } from "express";
 import user from "../repos/user";
-
-interface RequestWithUID extends Request {
-    uid?: string 
-}
+import { RequestWithUID } from "src/server";
 
 admin.initializeApp({
-    credential: admin.credential.cert(serviceAccount),
+  credential: admin.credential.cert(serviceAccount),
 });
 
-export const verifyTokenMiddleware = async (req: RequestWithUID, res: Response, next: NextFunction) => {
+export const verifyTokenMiddleware = async (
+  req: RequestWithUID,
+  res: Response,
+  next: NextFunction
+) => {
   const jwtToken = req.headers.authorization?.split(" ")[1]?.trim();
   console.log("req.headers: ", req.headers);
   console.log("jwt token:\n", jwtToken);
@@ -33,7 +34,6 @@ export const verifyTokenMiddleware = async (req: RequestWithUID, res: Response, 
     console.log("there was an error: ", error);
     res.status(401).send("Unauthorized");
   }
-}
-
+};
 
 export default admin;
