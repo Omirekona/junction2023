@@ -3,7 +3,7 @@ import {
   bexcoMissions,
   artGalleryMissions,
   hallOfMovieMissions,
-} from "src/constants";
+} from "../constants";
 
 async function get(
   route_id: number,
@@ -44,6 +44,8 @@ async function get(
         mission.level
       );
     });
+    const missions = await missionDB.get(route_id, user_id, progress, level);
+    return missions;
   }
 }
 

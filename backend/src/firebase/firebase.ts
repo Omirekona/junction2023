@@ -3,7 +3,7 @@ const serviceAccount = require("./service.json");
 
 import { Request, Response, NextFunction } from "express";
 import user from "../repos/user";
-import { RequestWithUID } from "src/server";
+import { RequestWithUID } from "../server";
 
 admin.initializeApp({
   credential: admin.credential.cert(serviceAccount),

@@ -1,4 +1,4 @@
-import { Mission } from "src/repos/db";
+import { Mission } from "../repos/db";
 
 const artGallery = {
   UC_SEQ: 289,

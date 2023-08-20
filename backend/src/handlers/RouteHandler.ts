@@ -1,4 +1,4 @@
-import { RequestWithUID } from "src/server";
+import { RequestWithUID } from "../server";
 import HttpStatusCodes from "../constants/HttpStatusCodes";
 import RouteService from "../services/RouteService";
 import { Request, Response } from "express";

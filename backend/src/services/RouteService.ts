@@ -6,8 +6,8 @@ import FestivalServiceAPI from "../constants/FestivalService";
 import { axiosInstance } from "../util/axios";
 import { getRandomElement, getRandomInt } from "../util";
 import routeDB from "../repos/route";
-import { Attraction } from "src/interfaces/Attraction";
-import { Route, RouteAndUser } from "src/repos/db";
+import { Attraction } from "../interfaces/Attraction";
+import { Route, RouteAndUser } from "../repos/db";
 
 function getDistanceFromLatLonInKm(
   lat1: number,

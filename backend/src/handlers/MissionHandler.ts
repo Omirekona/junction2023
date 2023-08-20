@@ -1,4 +1,4 @@
-import { RequestWithUID } from "src/server";
+import { RequestWithUID } from "../server";
 import MissionService from "../services/MissionService";
 import { Request, Response } from "express";
 

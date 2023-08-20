@@ -1,7 +1,7 @@
 import { Request, Response } from "express";
 import UserService from "../services/UserService";
 import HttpStatusCodes from "../constants/HttpStatusCodes";
-import { RequestWithUID } from "src/server";
+import { RequestWithUID } from "../server";
 
 async function get(req: RequestWithUID, res: Response) {
   const id = req.uid;
