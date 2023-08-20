@@ -4,6 +4,7 @@ import HomePage from './components/HomePage';
 import MapsPage from './components/MapsPage';
 import MissionPage from './components/MissionPage';
 import LoginPage from './auth/Login';
+import Register from './auth/Register';
 import RegisterPage from './auth/Register';
 import ForgotPasswordPage from './auth/ForgotPassword';
 import './App.css';

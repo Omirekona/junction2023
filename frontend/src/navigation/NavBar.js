@@ -31,6 +31,7 @@ function NavBar() {
                     <Link to="/mission" onClick={() => setDrawerOpen(false)} style={{ display: 'block', padding: '10px', textDecoration: 'none' }}>Mission</Link>
                     <Link to="/maps" onClick={() => setDrawerOpen(false)} style={{ display: 'block', padding: '10px', textDecoration: 'none' }}>Maps</Link>
                     <Link to="/login" onClick={() => setDrawerOpen(false)} style={{ display: 'block', padding: '10px', textDecoration: 'none' }}>Login</Link>
+                    <Link to="/register" onClick={() => setDrawerOpen(false)} style={{ display: 'block', padding: '10px', textDecoration: 'none' }}>Sign Up</Link>
                 </div>
             )}
         </div>
