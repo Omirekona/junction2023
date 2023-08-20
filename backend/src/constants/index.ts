@@ -1,3 +1,5 @@
+import { Mission } from "src/repos/db";
+
 const artGallery = {
   UC_SEQ: 289,
   MAIN_TITLE: "부산시립미술관",
@@ -102,6 +104,105 @@ const hallOfMovieL3 =
 export const bexcoImages = [bexcoL1, bexcoL2, bexcoL3];
 export const artGalleryImages = [artGalleryL1, artGalleryL2, artGalleryL3];
 export const hallOfMovieImages = [hallOfMovieL1, hallOfMovieL2, hallOfMovieL3];
+
+export const bexcoMissions: Mission[] = [
+  {
+    id: 1,
+    name: "Bexco Mission 1",
+    route_id: 1,
+    user_id: "1",
+    info: bexcoL1,
+    progress: 0,
+    level: 1,
+    is_complete: 0,
+  },
+  {
+    id: 2,
+    name: "Bexco Mission 2",
+    route_id: 1,
+    user_id: "1",
+    info: bexcoL2,
+    progress: 0,
+    level: 2,
+    is_complete: 0,
+  },
+  {
+    id: 3,
+    name: "Bexco Mission 3",
+    route_id: 1,
+    user_id: "1",
+    info: bexcoL3,
+    progress: 0,
+    level: 3,
+    is_complete: 0,
+  },
+];
+
+export const artGalleryMissions: Mission[] = [
+  {
+    id: 4,
+    name: "Art Gallery Mission 1",
+    route_id: 1,
+    user_id: "1",
+    info: artGalleryL1,
+    progress: 1,
+    level: 1,
+    is_complete: 0,
+  },
+  {
+    id: 5,
+    name: "Art Gallery Mission 2",
+    route_id: 1,
+    user_id: "1",
+    info: artGalleryL2,
+    progress: 1,
+    level: 2,
+    is_complete: 0,
+  },
+  {
+    id: 6,
+    name: "Art Gallery Mission 3",
+    route_id: 1,
+    user_id: "1",
+    info: artGalleryL3,
+    progress: 1,
+    level: 3,
+    is_complete: 0,
+  },
+];
+
+export const hallOfMovieMissions: Mission[] = [
+  {
+    id: 7,
+    name: "Hall of Movie Mission 1",
+    route_id: 1,
+    user_id: "1",
+    info: hallOfMovieL1,
+    progress: 2,
+    level: 1,
+    is_complete: 0,
+  },
+  {
+    id: 8,
+    name: "Hall of Movie Mission 2",
+    route_id: 1,
+    user_id: "1",
+    info: hallOfMovieL2,
+    progress: 2,
+    level: 2,
+    is_complete: 0,
+  },
+  {
+    id: 9,
+    name: "Hall of Movie Mission 3",
+    route_id: 1,
+    user_id: "1",
+    info: hallOfMovieL3,
+    progress: 2,
+    level: 3,
+    is_complete: 0,
+  },
+];
 
 export default {
   artGallery,

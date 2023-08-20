@@ -33,7 +33,7 @@ export interface Mission {
   id: number;
   name: string;
   route_id: number;
-  user_id: number;
+  user_id: string;
   info: string;
   progress: number;
   level: number;
@@ -81,11 +81,10 @@ db.serialize(() => {
   db.run(
     "CREATE TABLE mission (id INTEGER PRIMARY KEY, name TEXT, route_id NUMBER, user_id TEXT, info TEXT, progress INTEGER, level INTEGER, is_complete INTEGER)"
   );
-  db.run(
-    "INSERT INTO mission (name, route_id, user_id, info, progress, level, is_complete) VALUES ('mission1', 1, 'user1', 'info1', 0, 1, 0)"
-  );
   db.run("INSERT INTO route (id, info) VALUES (1, ?)", [JSON.stringify(arr)]);
-  db.run("INSERT INTO routeanduser (uid, rid, progress) VALUES ('user1', 1, 0)");
+  db.run(
+    "INSERT INTO routeanduser (uid, rid, progress) VALUES ('user1', 1, 0)"
+  );
 });
 
 export default db;
