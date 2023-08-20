@@ -54,6 +54,7 @@ function MapsPage() {
         return response.json();
       }).then(response => {
         console.log("response: ", response);
+        console.log("response: ", JSON.parse(response.info))
         setLoading(false);
       }).catch(error => {
         console.log("the error from the server: ", error)
