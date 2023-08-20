@@ -13,6 +13,7 @@ import Preference1 from './recommendation/MultipleSelect';
 import Preference2 from './recommendation/TwoSelect';
 import Preference3 from './recommendation/TripRoutes';
 import Copyright from './navigation/Copyright';
+import { useState } from 'react';
 
 import axios from "axios";
 import {FIREBASE_AUTH} from "./config/firebase";
@@ -45,7 +46,7 @@ function App() {
             } />
             <Route path="/maps" element={
               <Layout>
-                <MapsPage />
+                <MapsPage/> 
               </Layout>
             } />
             <Route path="/mission" element={

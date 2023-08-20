@@ -25,7 +25,7 @@ function Register() {
   return (
     <div style={{ display: 'flex', justifyContent: 'center', alignItems: 'center', height: '100vh' }}>
       <div style={{ width: '350px', border: '1px solid gray', padding: '20px', borderRadius: '8px', boxShadow: '0px 0px 10px rgba(0,0,0,0.1)' }}>
-        <h1 style={{ marginBottom: '10px', fontWeight: 'bold', fontSize: '35 px' }}>Login</h1>
+        <h1 style={{ marginBottom: '10px', fontWeight: 'bold', fontSize: '35 px' }}>Register</h1>
         <form onSubmit={handleSubmit}>
           <div>
             <label>Email: </label>
