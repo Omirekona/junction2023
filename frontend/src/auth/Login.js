@@ -24,13 +24,13 @@ function Login() {
 
     return (
         <div style={{ display: 'flex', justifyContent: 'center', alignItems: 'center', height: '100vh' }}>
-            <div style={{ width: '350px', border: '1px solid gray', padding: '20px', borderRadius: '8px', boxShadow: '0px 0px 10px rgba(0,0,0,0.1)' }}>
-                <h1 style={{marginBottom: '10px'}}>Login</h1>
+            <div style={{width: '350px', border: '1px solid gray', padding: '20px', borderRadius: '8px', boxShadow: '0px 0px 10px rgba(0,0,0,0.1)' }}>
+                <h1 style={{marginBottom: '10px', fontWeight: 'bold', fontSize: '35 px'}}>Login</h1>
                 <form onSubmit={handleSubmit}>
                     <div>
                         <label>Email: </label>
                         <input 
-                            style={{ marginBottom: '10px',borderRadius: '4px', border: '1px solid gray', padding: '2px' }}
+                            style={{ marginBottom: '10px',borderRadius: '4px', border: '1px solid gray', padding: '2px', width: '60%', marginLeft: '10px'}}
                             type="email"
                             value={email}
                             className="border-2 border-gray-300 p-2 w-full"
@@ -41,7 +41,7 @@ function Login() {
                     <div>
                         <label>Password: </label>
                         <input 
-                            style={{marginRight: '30px', borderRadius: '4px', border: '1px solid gray', padding: '2px' }}
+                            style={{marginRight: '30px', borderRadius: '4px', border: '1px solid gray', padding: '2px', marginLeft: '10px' }}
                             type="password"
                             value={password}
                             onChange={e => setPassword(e.target.value)}
@@ -49,7 +49,7 @@ function Login() {
                         />
                     </div>
                     {error && <p style={{ color: 'red' }}>{error}</p>}
-                    <button style={{ marginTop: '10px', borderRadius: '4px', border: '1px solid gray', padding: '2px', backgroundColor: 'lightgray'}}
+                    <button style={{ marginTop: '20px', borderRadius: '4px', border: '1px solid gray', padding: '2px', backgroundColor: 'lightgray'}}
                      type="submit">Log In</button>
                 </form>
                 <div style={{ marginTop: '30px', textDecoration: 'underline' }}>
