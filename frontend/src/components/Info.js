@@ -5,12 +5,12 @@ import { useNavigate } from "react-router-dom";
 import { FIREBASE_DB } from "../config/firebase";
 import {ref, uploadBytesResumable, getDownloadURL } from "firebase/storage";
 
-const Info = (name, info) => {
+const Info = ({name, info, img}) => {
     const navigate = useNavigate();
     const [image, setImage] = useState(null);
 
     const handleImageUpload = (event) => {
-        const file = event.targer.files[0];
+        const file = event.target.files[0];
         if (file) {
             setImage(file);
         }
@@ -38,14 +38,19 @@ const Info = (name, info) => {
             }
         )
     }
+    const getFirstTwoSentences = (text) => {
+        const sentences = text.split('.');
+        if (sentences.length > 2) {
+            return sentences.slice(0, 2).join('.') + '.';
+        }
+        return text;
+    };
 
     return (
         <div>
-            <div>
-                <p onClick={() => {navigate("/maps")}}>X</p>
-            </div>
-            <p>{name}</p>
-            <p>{info}</p>
+            <p>Place name: {name}</p>
+            <img src={img} alt="place image" />
+            <p>Description: {getFirstTwoSentences(info)}</p>
             <form>
                 <input type="file" onChange={handleImageUpload} />
                 <input type="submit" onSubmit = {handleSubmit}/>
