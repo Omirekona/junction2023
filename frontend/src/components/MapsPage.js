@@ -20,8 +20,7 @@ const containerStyle = {
 };
 
 const center = {
-  lat: 36.5,
-  lng: 128,
+  lat: 35.1796, lng: 129.0756
 };
 
 const path = [
@@ -38,6 +37,7 @@ function MapsPage() {
   const navigate = useNavigate();
 
   const [loading, setLoading] = useState(true);
+  const [pathData, setPathData] = useState([]);
 
   useEffect(() => {
     if (!FIREBASE_AUTH.currentUser) {
@@ -53,8 +53,9 @@ function MapsPage() {
       }).then(response => {
         return response.json();
       }).then(response => {
-        console.log("response: ", response);
-        console.log("response: ", JSON.parse(response.info))
+        const routeInfo = JSON.parse(response.info);
+        const mappedPath = routeInfo.map(item => ({ lat: item.LAT, lng: item.LNG }));
+        setPathData(mappedPath);
         setLoading(false);
       }).catch(error => {
         console.log("the error from the server: ", error)
@@ -81,13 +82,13 @@ function MapsPage() {
         style={{ width: "80%", height: "500px", borderRadius: "0 0 10px 10px" }}
         mapContainerStyle={containerStyle}
         center={center}
-        zoom={7}
+        zoom={11}
         options={{
           mapId: "2b6d581e2141c1ff",
         }}
         mapId="2b6d581e2141c1ff"
       >
-        {path && path.map((point, index) => (
+        {pathData && pathData.map((point, index) => (
               <Marker 
                 key={index}
                 position={point}
@@ -120,7 +121,7 @@ function MapsPage() {
           onClick={() => setShowBusanInfo(true)}
         />
         <Polyline
-          path={path}
+          path={pathData}
           options={{
             strokeColor: "blue",
             strokeOpacity: 1,
